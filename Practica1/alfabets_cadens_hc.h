@@ -74,12 +74,15 @@ int esAlfanumerica(const char* cadena) {
 
 void GuardarResultado(CADENAS_LIST *datos, const char *resultado) {
     int opcion;
+    system("clear");
+    guardando();
     printf("\nDesea guardar este resultado???\n");
     printf("1.- Guardar en Cadena 1\n");
     printf("2.- Guardar en Cadena 2\n");
     printf("0.- No guardar\n");
     printf("Opción: ");
     scanf("%d", &opcion);
+    while (getchar() != '\n');
 
     int len = calcular_longitud_cadena(resultado);
 
@@ -88,6 +91,7 @@ void GuardarResultado(CADENAS_LIST *datos, const char *resultado) {
         printf("ADVERTENCIA: Esto sobreescribira la cadena seleccionada\n");
         printf("Estas seguro? (1 = SI) (0 = NO): ");
         scanf("%d", &confirmar);
+        while (getchar() != '\n');
         if (confirmar == 1){
             // realloc ajusta la memoria de cadena1 al nuevo tamaño exacto
             datos->cadena1 = (char*)realloc(datos->cadena1, (len + 1) * sizeof(char));
@@ -95,7 +99,7 @@ void GuardarResultado(CADENAS_LIST *datos, const char *resultado) {
             printf("¡Cadena 1 actualizada exitosamente!\n");
         }
         else {
-            printf("Operación de guardado cancelada!\n");
+            printf("Operacion de guardado cancelada\n");
             return;
         }
 
@@ -104,20 +108,26 @@ void GuardarResultado(CADENAS_LIST *datos, const char *resultado) {
         printf("ADVERTENCIA: Esto sobreescribira la cadena seleccionada\n");
         printf("Estas seguro? (1 = SI) (0 = NO): ");
         scanf("%d", &confirmar);
+        while (getchar() != '\n');
         if (confirmar == 1){
             datos->cadena2 = (char*)realloc(datos->cadena2, (len + 1) * sizeof(char));
             copiar_cadena(datos->cadena2, resultado);
-            printf("¡Cadena 2 actualizada exitosamente!\n");
+            printf("Cadena 2 actualizada exitosamente\n");
         }
         else {
-            printf("Operación de guardado cancelada!\n");
+            printf("Operacion de guardado cancelada\n");
             return;
         }
+    } else if (opcion == 0) {
+        printf("Resultado no guardado\n");
+        return;
     } else {
         printf("NO SELECCIONASTE NADA\n");
         printf("INTENTA OTRA VEZ.... \n");
         return;
     }
+    printf("\nPresiona Enter para continuar...\n");
+    getchar();
 }
 
 void ConcatenarCadenas(CADENAS_LIST *datos) {
@@ -129,9 +139,14 @@ void ConcatenarCadenas(CADENAS_LIST *datos) {
     
     copiar_cadena(cadenaNueva, datos->cadena1);
     pegar_cadena(cadenaNueva, datos->cadena2);
+
+    system("clear");
+    concatenar();
     
-    printf("\nLa concatenación de las cadenas es: %s\n", cadenaNueva);
+    printf("\nLa concatenacion de las cadenas es: %s\n", cadenaNueva);
     printf("La longitud de la cadena concatenada es: %d\n", calcular_longitud_cadena(cadenaNueva));
+    printf("\nPresiona Enter para continuar...\n");
+    getchar();
     
     GuardarResultado(datos, cadenaNueva);
     
@@ -141,26 +156,30 @@ void ConcatenarCadenas(CADENAS_LIST *datos) {
 
 
 void PotenciaCadenas(CADENAS_LIST *datos){
+    system("clear");
+    poten();
     printf("\nEstas son las cadenas actuales:\n");
     printf("Cadena 1: %s\n", datos->cadena1);
     printf("Cadena 2: %s\n", datos->cadena2);
     printf("Cual de las dos cadenas deseas potenciar? (1 o 2): ");
     int seleccion;
     scanf("%d", &seleccion);
+    while (getchar() != '\n');
     
     char* cadenaBase;
     if (seleccion == 1) cadenaBase = datos->cadena1;
     else if (seleccion == 2) cadenaBase = datos->cadena2;
     else {
-        printf("Opción no valida.\n");
+        printf("Opcion no valida.\n");
         return;
     }
     
 
-    printf("Ingrese la potencia a la que desea elevar la cadena (+ o -): ");
+    printf("Ingrese la potencia a la que desea elevar la cadena (EJ: 2 o -2): \n");
     printf("NOTA: Al ser la potencia negativa, se generara la cadena invertida elevada a la potencia\n");
     int k;
     scanf("%d", &k);
+    while (getchar() != '\n');
 
     int lenBase = calcular_longitud_cadena(cadenaBase);
 
@@ -172,7 +191,7 @@ void PotenciaCadenas(CADENAS_LIST *datos){
         for (int i = 0; i < k; i++){
             pegar_cadena(cadenaPotencia, cadenaBase);
         }
-        printf("La potencia positiva es: %s\n", cadenaPotencia);
+        printf("\nLa potencia positiva es: %s\n", cadenaPotencia);
         GuardarResultado(datos, cadenaPotencia);
         free(cadenaPotencia);
 
@@ -191,33 +210,45 @@ void PotenciaCadenas(CADENAS_LIST *datos){
         for (int i = 0; i < absK; i++){
             pegar_cadena(cadenaPotencia, invertida);
         }
-        printf("La potencia negativa es: %s\n", cadenaPotencia);
+        printf("\nLa potencia negativa es: %s\n", cadenaPotencia);
+        printf("\nPresiona Enter para continuar...\n");
+        getchar();
         GuardarResultado(datos, cadenaPotencia);
         
         free(invertida);
         free(cadenaPotencia);
 
     } else {
-        printf("La potencia de una cadena a la 0 es la cadena vacía (Epsilon).\n");
+        printf("La potencia de una cadena a la 0 es la cadena vacía.\n");
+        printf("\nPresiona Enter para continuar...\n");
+        getchar();
         GuardarResultado(datos, ""); 
     }
 }
 
 void LongitudCadenas(CADENAS_LIST *datos){
+    system("clear");
+    longit();
     printf("\nLa longitud de la cadena 1 es: %d\n", calcular_longitud_cadena(datos->cadena1));
     printf("La longitud de la cadena 2 es: %d\n", calcular_longitud_cadena(datos->cadena2));
+
+    printf("\nPresiona Enter para continuar...\n");
+    getchar();
 }
 
 void PrefijosSufijos(CADENAS_LIST *datos){
-    printf("\n¿De qué cadena desea obtener los prefijos y sufijos? (1 o 2): ");
+    system("clear");
+    prefig();
+    printf("\nDe que cadena desea obtener los prefijos y sufijos? (1 o 2): ");
     int opcion;
     scanf("%d", &opcion);
+    while (getchar() != '\n');
     
     char* cadenaBase;
     if (opcion == 1) cadenaBase = datos->cadena1;
     else if (opcion == 2) cadenaBase = datos->cadena2;
     else {
-        printf("Opción no válida.\n");
+        printf("Opcion no valida.\n");
         return;
     }
 
@@ -242,10 +273,16 @@ void PrefijosSufijos(CADENAS_LIST *datos){
     }
     
     free(temp);
+
+    printf("\nPresiona Enter para continuar...\n");
+    getchar();
 }
 
 
 void Subcadenas(CADENAS_LIST *datos){
+    system("clear");
+    subc();
+
     int len1 = calcular_longitud_cadena(datos->cadena1);
     char* temp = (char*)malloc((len1 > calcular_longitud_cadena(datos->cadena2) ? len1 : calcular_longitud_cadena(datos->cadena2)) + 1);
 
@@ -268,12 +305,18 @@ void Subcadenas(CADENAS_LIST *datos){
         }
     }
     free(temp);
+
+    printf("\nPresiona Enter para continuar...\n");
+    getchar();
 }
 
 void Subsecuencias(CADENAS_LIST *datos){
+    system("clear");
+    subcsec();
+
     int len1 = calcular_longitud_cadena(datos->cadena1);
     if (len1 > 12) {
-        printf("\nError: La cadena 1 tiene más de 12 caracteres (%d). Operación cancelada.\n", len1);
+        printf("\nError: La cadena 1 tiene mas de 12 caracteres: (%d). \nOperacion cancelada.\n", len1);
     } else {
         char* temp = (char*)malloc((len1 + 1) * sizeof(char));
         printf("\nLas subsecuencias de la cadena 1 son: \n");
@@ -293,7 +336,7 @@ void Subsecuencias(CADENAS_LIST *datos){
 
     int len2 = calcular_longitud_cadena(datos->cadena2);
     if (len2 > 12) {
-        printf("\nError: La cadena 2 tiene más de 12 caracteres (%d). Operación cancelada.\n", len2);
+        printf("\nError: La cadena 2 tiene mas de 12 caracteres (%d). Operacion cancelada.\n", len2);
     } else {
         char* temp2 = (char*)malloc((len2 + 1) * sizeof(char));
         printf("\nLas subsecuencias de la cadena 2 son: \n");
@@ -310,6 +353,8 @@ void Subsecuencias(CADENAS_LIST *datos){
         }
         free(temp2);
     }
+    printf("\nPresiona Enter para continuar...\n");
+    getchar();
 }
 
 //=======================================
@@ -321,22 +366,24 @@ void Menu(CADENAS_LIST *datos) {
     int ab;
     do {
 
-
+        system("clear");
+        menu();
         printf("\n========================================\n");
         printf("ESTADO ACTUAL:\n");
         printf("Cadena 1: %s\n", datos->cadena1);
         printf("Cadena 2: %s\n", datos->cadena2);
         printf("========================================\n");
-        printf("¿Qué operación desea realizar?\n");
+        printf("\nQue operación deseas realizar?\n");
         printf("1.- Concatenar cadenas\n");
         printf("2.- Potencia de cadenas (positiva y negativa)\n");
         printf("3.- Calculo de longitud de cadenas.\n");
-        printf("4.- Generación de prefijos y sufijos de una cadena.\n");
-        printf("5.- Generación de subcadenas.\n");
-        printf("6.- Generación de subsecuencias.\n");
+        printf("4.- Generacion de prefijos y sufijos de una cadena.\n");
+        printf("5.- Generacion de subcadenas.\n");
+        printf("6.- Generacion de subsecuencias.\n");
         printf("7.- Salir del programa\n");
         printf("Opción: ");
         scanf("%d", &ab);
+        while (getchar() != '\n');
 
         switch (ab) {
             case 1: ConcatenarCadenas(datos); break;
@@ -345,8 +392,8 @@ void Menu(CADENAS_LIST *datos) {
             case 4: PrefijosSufijos(datos); break;
             case 5: Subcadenas(datos); break;
             case 6: Subsecuencias(datos); break;
-            case 7: printf("Saliendo del menú...\n"); break;
-            default: printf("Opción no válida.\n"); break;
+            case 7: system("clear"); sal(); break;
+            default: printf("Opcion no valida.\n"); break;
         }
     } while (ab != 7);
 } 
