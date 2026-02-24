@@ -15,6 +15,8 @@ void presen() {
     printf("\n");
     printf("-----------------------------------------------------------------------\n");
     printf("INFO: \n");
+    printf("En esta practica se implementan funciones correspondientes a operaciones con cadenas:\n");
+    printf("Concatenacion, potencia, longitud, prefijos, sufijos, subcadenas y subsecuencias. \n");
     printf("-----------------------------------------------------------------------\n");
     printf("\n");
 }
