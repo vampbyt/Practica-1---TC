@@ -21,7 +21,7 @@ int main (){
     while(!entradasValidas) {
         bienve();
         printf("Deberas ingresar las cadenas con las que vas a trabajar.\n");
-        printf("Ingrese cadena 1 (alfanumérica, maximo 49): ");
+        printf("Ingrese cadena 1 (alfanumerica, maximo 49): ");
         scanf("%s", entrada);
         
         int len1 = calcular_longitud_cadena(entrada);
@@ -30,7 +30,7 @@ int main (){
             printf("----> Error: Las cadenas deben ser menores a 50 caracteres.\n");
             continue; 
         } else if (!esAlfanumerica(entrada)) {
-            printf("----> Error: El alfabeto solo permite letras y números.\n");
+            printf("----> Error: El alfabeto solo permite letras y numeros.\n");
             continue;
         }
         
@@ -38,7 +38,7 @@ int main (){
         misDatos.cadena1 = (char*)malloc((len1 + 1) * sizeof(char));
         copiar_cadena(misDatos.cadena1, entrada);
 
-        printf("Ingrese cadena 2 (alfanumérica, maximo 49): ");
+        printf("Ingrese cadena 2 (alfanumerica, maximo 49): ");
         scanf("%s", entrada);
         
         int len2 = calcular_longitud_cadena(entrada);
@@ -49,7 +49,7 @@ int main (){
             free(misDatos.cadena1); 
             continue;
         } else if (!esAlfanumerica(entrada)) {
-            printf("----> Error: El alfabeto solo permite letras y números.\n");
+            printf("----> Error: El alfabeto solo permite letras y numeros.\n");
             free(misDatos.cadena1);
             continue;
         }

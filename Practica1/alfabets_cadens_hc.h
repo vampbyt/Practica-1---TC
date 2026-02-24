@@ -80,7 +80,7 @@ void GuardarResultado(CADENAS_LIST *datos, const char *resultado) {
     printf("1.- Guardar en Cadena 1\n");
     printf("2.- Guardar en Cadena 2\n");
     printf("0.- No guardar\n");
-    printf("Opción: ");
+    printf("Opcion: ");
     scanf("%d", &opcion);
     while (getchar() != '\n');
 
@@ -219,7 +219,7 @@ void PotenciaCadenas(CADENAS_LIST *datos){
         free(cadenaPotencia);
 
     } else {
-        printf("La potencia de una cadena a la 0 es la cadena vacía.\n");
+        printf("La potencia de una cadena a la 0 es la cadena vacia.\n");
         printf("\nPresiona Enter para continuar...\n");
         getchar();
         GuardarResultado(datos, ""); 
@@ -260,7 +260,7 @@ void PrefijosSufijos(CADENAS_LIST *datos){
     for (int i = 0; i <= len; i++) {
         copiar_cantidad_cadena(temp, cadenaBase, i);
         temp[i] = '\0';
-        if(calcular_longitud_cadena(temp) == 0) printf("(vacía)\n");
+        if(calcular_longitud_cadena(temp) == 0) printf("(vacia)\n");
         else printf("%s\n", temp);
     }
 
@@ -268,7 +268,7 @@ void PrefijosSufijos(CADENAS_LIST *datos){
     for (int i = 0; i <= len; i++) {
         copiar_cantidad_cadena(temp, cadenaBase + i, len - i);
         temp[len - i] = '\0';
-        if(calcular_longitud_cadena(temp) == 0) printf("(vacía)\n");
+        if(calcular_longitud_cadena(temp) == 0) printf("(vacia)\n");
         else printf("%s\n", temp);
     }
     
@@ -328,7 +328,7 @@ void Subsecuencias(CADENAS_LIST *datos){
                 }
             }
             temp[index] = '\0';
-            if(calcular_longitud_cadena(temp) == 0) printf("(vacía)\n");
+            if(calcular_longitud_cadena(temp) == 0) printf("(vacia)\n");
             else printf("%s\n", temp);
         }
         free(temp);
@@ -348,7 +348,7 @@ void Subsecuencias(CADENAS_LIST *datos){
                 }
             }
             temp2[index] = '\0';
-            if(calcular_longitud_cadena(temp2) == 0) printf("(vacía)\n");
+            if(calcular_longitud_cadena(temp2) == 0) printf("(vacia)\n");
             else printf("%s\n", temp2);
         }
         free(temp2);
@@ -373,7 +373,7 @@ void Menu(CADENAS_LIST *datos) {
         printf("Cadena 1: %s\n", datos->cadena1);
         printf("Cadena 2: %s\n", datos->cadena2);
         printf("========================================\n");
-        printf("\nQue operación deseas realizar?\n");
+        printf("\nQue operacion deseas realizar?\n");
         printf("1.- Concatenar cadenas\n");
         printf("2.- Potencia de cadenas (positiva y negativa)\n");
         printf("3.- Calculo de longitud de cadenas.\n");
